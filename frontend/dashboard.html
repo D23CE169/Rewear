@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ReWear - Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">ReWear</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="add-item.html">Add Item</a>
+      <a href="#" onclick="openModal()">Login/Register</a>
+    </div>
+  </div>
+
+  <div class="dashboard-container">
+    <h2>User Dashboard</h2>
+
+    <div class="profile-section">
+      <h3> Profile Details</h3>
+      <p><strong>Name:</strong> Kashak Modi</p>
+      <p><strong>Email:</strong> kashak@example.com</p>
+      <p><strong>Points:</strong> 45</p>
+    </div>
+
+    <div class="uploads-section">
+      <h3> Uploaded Items</h3>
+      <div class="item-list">
+        <div class="item-card">
+          <img src="images/jacket.png" alt="Jacket" />
+          <h4>Denim Jacket</h4>
+          <p>Status: Available</p>
+        </div>
+        <div class="item-card">
+          <img src="images/kurti.png" alt="Kurti" />
+          <h4>Floral Kurti</h4>
+          <p>Status: Swapped</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="swaps-section">
+      <h3>Swap History</h3>
+      <ul>
+        <li>Swapped Floral Kurti with Anjali (Completed)</li>
+        <li>Swap request sent for Blue Jeans (Pending)</li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

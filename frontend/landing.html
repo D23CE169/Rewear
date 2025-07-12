@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ReWear | Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <h1>ReWear</h1>
+    <div class="nav-links">
+      <a href="landing.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="add-item.html">List an Item</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h2>Give Clothes a Second Life ♻️</h2>
+    <p>Exchange fashion and earn points!</p>
+    <div class="hero-buttons">
+      <button onclick="window.location='add-item.html'">List an Item</button>
+      <button onclick="window.location='item-detail.html'">Browse Items</button>
+    </div>
+  </section>
+
+  <section class="carousel">
+    <h3>✨ Featured Items</h3>
+    <div class="items">
+      <div>
+        <img src="https://via.placeholder.com/100" alt="Item 1">
+        <p>Red Jacket</p>
+      </div>
+      <div>
+        <img src="https://via.placeholder.com/100" alt="Item 2">
+        <p>Blue Jeans</p>
+      </div>
+      <div>
+        <img src="https://via.placeholder.com/100" alt="Item 3">
+        <p>Green Kurti</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

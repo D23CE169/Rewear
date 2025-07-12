@@ -1,0 +1,157 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ReWear - Add New Item</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">ReWear</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="add-item.html" class="active">Add Item</a>
+      <a href="#" onclick="openModal()">Login/Register</a>
+    </div>
+  </div>
+
+  <div class="add-item-container">
+    <h2>📸 Add New Clothing Item</h2>
+
+    <form class="add-item-form" id="addItemForm" enctype="multipart/form-data">
+      <label>Upload Image:</label>
+      <input type="file" id="images" name="images" accept="image/*"  required />
+
+      <label>Title:</label>
+      <input type="text" id="title" name="title" placeholder="E.g. Black Leather Jacket" required />
+
+      <label>Description:</label>
+      <textarea id="description" name="description" placeholder="Describe the item..." required></textarea>
+
+      <label>Category:</label>
+      <select id="category" name="category" required>
+        <option value="">-- Select Category --</option>
+        <option>Shirt</option>
+        <option>Jacket</option>
+        <option>Pants</option>
+        <option>Kurti</option>
+        <option>Saree</option>
+        <option>Other</option>
+      </select>
+
+      <label>Type:</label>
+      <input type="text" id="type" name="type" placeholder="E.g. Casual, Formal" />
+
+      <label>Size:</label>
+      <select id="size" name="size" required>
+        <option value="">-- Select Size --</option>
+        <option>XS</option>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+        <option>XXL</option>
+      </select>
+
+      <label>Condition:</label>
+      <select id="condition" name="condition" required>
+        <option value="">-- Select Condition --</option>
+        <option>New</option>
+        <option>Like New</option>
+        <option>Gently Used</option>
+        <option>Used</option>
+      </select>
+
+      <label>Tags (comma separated):</label>
+      <input type="text" id="tags" name="tags" placeholder="e.g. trendy, blue, winter" />
+
+      <button type="submit" class="btn">Submit Item</button>
+    </form>
+  </div>
+
+  <!-- <script src="script.js"></script> -->
+   <script>
+  // Ensure the user is logged in before accessing the page
+  window.onload = () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('You must be logged in to add an item.');
+      window.location.href = 'index.html';
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('addItemForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const token = localStorage.getItem('token');
+      if (!token) {
+        alert('Please login to add an item.');
+        return;
+      }
+
+      const formData = new FormData();
+
+      // Add image files
+      const files = document.getElementById('images').files;
+      for (let i = 0; i < files.length; i++) {
+        formData.append('images', files[i]);
+      }
+
+      // Add form fields
+      formData.append('title', document.getElementById('title').value);
+      formData.append('description', document.getElementById('description').value);
+      formData.append('category', document.getElementById('category').value);
+      formData.append('type', document.getElementById('type').value);
+      formData.append('size', document.getElementById('size').value);
+      formData.append('condition', document.getElementById('condition').value);
+
+      // Handle tags
+      const tags = document.getElementById('tags').value
+        .split(',')
+        .map(tag => tag.trim())
+        .filter(tag => tag !== '');
+      tags.forEach(tag => formData.append('tags[]', tag));
+
+      try {
+        const response = await fetch('http://localhost:5000/api/items', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert('🎉 Item added successfully!');
+          form.reset();
+        } else {
+          alert(data.message || 'Failed to add item.');
+        }
+      } catch (err) {
+        console.error('Upload error:', err);
+        alert('An error occurred while uploading the item. Please try again.');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

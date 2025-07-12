@@ -1,0 +1,79 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReWear - Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">
+      <img src="images/logo.jpeg" alt="ReWear Logo" class="logo-img" />
+      <span>ReWear</span>
+    </div>
+    <input type="text" class="search-box" placeholder="Search for clothes..." />
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="add-item.html">Add Item</a>
+      <a href="#" onclick="openModal()">Login/Register</a>
+  <a href="#" onclick="logout()" id="logoutBtn" style="display: none;">Logout</a>
+    </div>
+  </div>
+
+  <div class="landing-content">
+    <h1>Give your clothes a second life.</h1>
+    <p>Swap or redeem unused fashion items with ReWear.</p>
+    <div class="cta-buttons">
+      <a href="dashboard.html" class="btn">Start Swapping</a>
+      <a href="#items" class="btn">Browse Items</a>
+      <a href="add-item.html" class="btn">List an Item</a>
+    </div>
+  </div>
+
+  <div class="carousel">
+    <h2>Featured Items</h2>
+    <div class="items">
+      <div class="item-card">
+        <img src="images/jacket.png" alt="Jacket" />
+        <h3>Denim Jacket</h3>
+        <p>Size: M | Points: 15</p>
+        <a href="item-detail.html">View</a>
+      </div>
+      <div class="item-card">
+        <img src="images/kurti.png" alt="Kurti" />
+        <h3>Floral Kurti</h3>
+        <p>Size: L | Points: 10</p>
+        <a href="item-detail.html">View</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login/Register Modal -->
+  <div class="modal" id="authModal">
+    <div class="modal-box">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div class="modal-tabs">
+        <button onclick="showLogin()" class="active" id="loginTab">Login</button>
+        <button onclick="showRegister()" id="registerTab">Register</button>
+      </div>
+      <div id="loginForm" class="auth-form">
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <button onclick="login()">Login</button>
+      </div>
+      <div id="registerForm" class="auth-form" style="display:none">
+        <input type="text" placeholder="Name" />
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <input type="number" placeholder="Contact" />
+        <input type="text" placeholder="Address" />
+        <button onclick="register()">Register</button>
+      </div>
+    </div>
+  </div>
+</body> 
+</html>
